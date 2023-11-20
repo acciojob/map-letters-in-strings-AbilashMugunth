@@ -1,28 +1,20 @@
 //your JS code here. If required.
-function mapLetters(str) {
-  let letterMap = new Map();
+function mapLetters(word) {
+  const letterMap = {};
 
-  for (let i = 0; i < str.length; i++) {
-    letterMap.set(str.charAt(i), []);
-  }
-  // console.log(letterMap);
+  // Loop through each character in the word
+  for (let i = 0; i < word.length; i++) {
+    const letter = word[i];
 
-  letterMap.forEach((val, key) => {
-    let charindex = [];
-    for (let i = 0; i < str.length; i++) {
-      if (key == str[i]) {
-        charindex.push(i);
-      }
+    // Check if the letter is already in the map
+    if (letterMap.hasOwnProperty(letter)) {
+      letterMap[letter].push(i);
+    } else {
+      // If not, create a new array with the current index
+      letterMap[letter] = [i];
     }
-    letterMap.set(key, charindex);
-  });
+  }
 
-  // console.log(letterMap);
-  // Convert Map to Object
-  const myObject = {};
-  letterMap.forEach((value, key) => {
-    myObject[key] = value;
-  });
-
+  return letterMap;
   return myObject;
 }
